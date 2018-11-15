@@ -1,3 +1,8 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Form1.cs](./CS/PrintTheChart/Form1.cs) (VB: [Form1.vb](./VB/PrintTheChart/Form1.vb))
+<!-- default file list end -->
 # How to fit the size of a chart to the page width in the Print Preview
 
 
