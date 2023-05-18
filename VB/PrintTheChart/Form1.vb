@@ -1,28 +1,29 @@
-Imports Microsoft.VisualBasic
 Imports System
 Imports System.Windows.Forms
 Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraCharts.Printing
 Imports DevExpress.Drawing.Printing
-' ...
 
+' ...
 Namespace PrintTheChart
-    Partial Public Class Form1
+
+    Public Partial Class Form1
         Inherits Form
+
         Public Sub New()
             InitializeComponent()
         End Sub
 
         Private cp As ChartPrinter
 
-        Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles button1.Click
-            Dim l As New Link(New PrintingSystem())
+        Private Sub button1_Click(ByVal sender As Object, ByVal e As EventArgs)
+            Dim l As Link = New Link(New PrintingSystem())
             l.Landscape = True
             l.PaperKind = DXPaperKind.A3
-            cp = New ChartPrinter(Me.chartControl1)
+            cp = New ChartPrinter(chartControl1)
             cp.Initialize(l.PrintingSystem, l)
             cp.SizeMode = PrintSizeMode.Stretch
-            AddHandler l.CreateDetailArea, AddressOf l_CreateDetailArea
+            AddHandler l.CreateDetailArea, New CreateAreaEventHandler(AddressOf l_CreateDetailArea)
             l.ShowPreviewDialog()
             cp.Release()
         End Sub
@@ -30,6 +31,5 @@ Namespace PrintTheChart
         Private Sub l_CreateDetailArea(ByVal sender As Object, ByVal e As CreateAreaEventArgs)
             cp.CreateDetail(e.Graph)
         End Sub
-
     End Class
 End Namespace
