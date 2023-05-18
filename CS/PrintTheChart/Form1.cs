@@ -2,6 +2,7 @@ using System;
 using System.Windows.Forms;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraCharts.Printing;
+using DevExpress.Drawing.Printing;
 // ...
 
 namespace PrintTheChart {
@@ -15,7 +16,7 @@ namespace PrintTheChart {
         private void button1_Click(object sender, EventArgs e) {
             Link l = new Link(new PrintingSystem());
             l.Landscape = true;
-            l.PaperKind = System.Drawing.Printing.PaperKind.A3;
+            l.PaperKind = DXPaperKind.A3;
             cp = new ChartPrinter(this.chartControl1);
             cp.Initialize(l.PrintingSystem, l);
             cp.SizeMode = PrintSizeMode.Stretch;
